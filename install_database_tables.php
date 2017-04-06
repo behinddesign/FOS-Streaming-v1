@@ -7,28 +7,6 @@ $db = $capsule;
 if (isset($_GET['install'])) {
 
     $arraynamesexist = [];
-    $tables = $capsule::select('SHOW TABLES');
-    foreach ($tables as $key => $val) {
-
-        $tableName = (array)$val;
-        $tableName = array_shift($tableName);
-
-        array_push($arraynamesexist, $tableName);
-    }
-
-    if ($_GET['install'] == 'fresh') {
-        $db::schema()->dropIfExists('admins');
-        $db::schema()->dropIfExists('categories');
-        $db::schema()->dropIfExists('category_user');
-        $db::schema()->dropIfExists('settings');
-        $db::schema()->dropIfExists('streams');
-        $db::schema()->dropIfExists('users');
-        $db::schema()->dropIfExists('transcodes');
-        $db::schema()->dropIfExists('activity');
-        $db::schema()->dropIfExists('blocked_ips');
-        $db::schema()->dropIfExists('blocked_user_agents');
-        $arraynamesexist = [];
-    }
 
     if (!in_array('admins', $arraynamesexist)) {
 
